@@ -31,7 +31,7 @@ def load_primes(filename='primes.txt'):
 def update_primes(nums, filename='primes.txt'):
     l = file_len(filename)
     nums = nums[l:]
-    print(l, nums)
+    # Append the next 
     with open(filename, 'a') as f:
         for i in nums:
             f.write(str(i) + '\n')
