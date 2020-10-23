@@ -12,7 +12,7 @@ def is_prime(num, factors):
         if num%i==0:
             return False
     return True
-
+    
 
 def file_len(filename):
     try:
@@ -27,22 +27,24 @@ def load_primes(filename='primes.txt'):
             print(2, file=f)
     return [int(line) for line in open(filename, 'r').readlines()]
 
+
 def update_primes(nums, filename='primes.txt'):
-    with open(filename, 'w') as f:
-        f.seek(0)
+    l = file_len(filename)
+    nums = nums[l:]
+    print(l, nums)
+    with open(filename, 'a') as f:
         for i in nums:
             f.write(str(i) + '\n')
             
             
+def main():
+    primes = load_primes()
+
+    for i in range(primes[-1]+1, primes[-1] + 1001):
+        if is_prime(i, primes):
+            primes.append(i)
             
-            
-primes = load_primes()
+    update_primes(primes)
 
-for i in range(3, 1000, 2):
-    if is_prime(i, primes):
-        primes.append(i)
-
-update_primes(primes)
-
-
-
+if __name__ == '__main__':
+    main()
